@@ -16,7 +16,9 @@ AM_INIT_AUTOMAKE()
 AC_PROG_CC
 AC_HEADER_STDC
 AC_TYPE_SIZE_T
+PKG_CHECK_MODULES([libxml2],[libxml-2.0])
 AC_CHECK_LIB([curl], [curl_easy_init])
+AC_CHECK_LIB([xml2], [xmlNewChild])
 AC_CHECK_HEADERS([stdlib.h string.h unistd.h])
 AC_CHECK_FUNCS([memset regcomp])
 
@@ -25,5 +27,6 @@ if test "$ac_cv_lib_curl_curl_easy_init" = "no"
 then
 	AC_MSG_ERROR(Unable to find required library libcurl)
 fi
+
 
 AC_OUTPUT([ Makefile src/Makefile doc/Makefile ])
